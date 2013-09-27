@@ -29,6 +29,7 @@ public class WeiChatPublicPlatServlet extends HttpServlet {
 		String signature = request.getParameter("signature");
 		String timestamp = request.getParameter("timestamp");
 		String nonce = request.getParameter("nonce");
+		//
 		
 		if(signature != null && !signature.equals("") && timestamp != null && !timestamp.equals("") && nonce != null && !nonce.equals("")){
 			PrintWriter out = response.getWriter();
