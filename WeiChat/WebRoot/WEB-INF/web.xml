@@ -16,4 +16,18 @@
 		<servlet-name>WeiChatPublicPlatServlet</servlet-name>
 		<url-pattern></url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>PicServlet</servlet-name>
+		<servlet-class>com.PicServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>PicServlet</servlet-name>
+		<url-pattern>/pic</url-pattern>
+	</servlet-mapping>
+	
+	<listener>
+		<listener-class>com.WeRobotServletListener</listener-class>
+	</listener> 
 </web-app>

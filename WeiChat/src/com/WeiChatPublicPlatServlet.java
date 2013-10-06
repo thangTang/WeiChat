@@ -23,6 +23,7 @@ public class WeiChatPublicPlatServlet extends HttpServlet {
 	private static final String TOKEN = "weiduomei";
 	
 	private static final String RESPONSE_TXT = "<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[%s]]></MsgType><Content><![CDATA[%s]]></Content><FuncFlag>0</FuncFlag></xml>";
+	private MsgManager manager = MsgManager.getMsgManager();
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		System.out.println("something geted!");
@@ -47,21 +48,23 @@ public class WeiChatPublicPlatServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 
-		Document doc = null;
-		SAXReader reader = new SAXReader();
+//		Document doc = null;
+//		SAXReader reader = new SAXReader();
 		InputStream in = request.getInputStream();
-		try {
-			doc = reader.read(in);
-            Element root = doc.getRootElement();
-            String toUserName = root.element("ToUserName").getTextTrim();
-            String fromUserName = root.element("FromUserName").getTextTrim();
-            String content = root.element("Content").getTextTrim();
-			// root.element("MsgType")可以获取消息类型
-			// 这里只回复简单文本信息
-            out.printf(RESPONSE_TXT, fromUserName,toUserName,System.currentTimeMillis(),"text","您发送的内容是:"+content);
-		} catch (DocumentException e) {
-			e.printStackTrace();
-		}
+		String responceStr = manager.getReturnInfo(in);
+		out.printf(responceStr);
+//		try {
+//			doc = reader.read(in);
+//            Element root = doc.getRootElement();
+//            String toUserName = root.element("ToUserName").getTextTrim();
+//            String fromUserName = root.element("FromUserName").getTextTrim();
+//            String content = root.element("Content").getTextTrim();
+//			// root.element("MsgType")可以获取消息类型
+//			// 这里只回复简单文本信息
+//            out.printf(RESPONSE_TXT, fromUserName,toUserName,System.currentTimeMillis(),"text","您发送的内容是:"+content);
+//		} catch (DocumentException e) {
+//			e.printStackTrace();
+//		}
 		in.close();
 		in = null;
 		out.close();
