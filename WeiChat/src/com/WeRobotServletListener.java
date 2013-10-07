@@ -14,6 +14,8 @@ public class WeRobotServletListener implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		// TODO Auto-generated method stub
+		//测试使用
+//		MsgManager.getMsgManager().testArticle();
 		MsgManager.getMsgManager();
 	}
 

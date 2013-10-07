@@ -2,10 +2,10 @@ package com.bean;
 
 public class MessageBean {
 	private int messageId;
-	private String messageTitle;
+	private String messageTitle = "";
 	private int menuId;
-	private String description;
-	private String picPath;
+	private String description = "";
+	private String picPath = "";
 	
 	public int getMessageId() {
 		return messageId;
